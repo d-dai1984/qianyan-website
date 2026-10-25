@@ -16,6 +16,7 @@ Settings → Pages → Deploy from a branch → main / (root)。每次更新 mai
 - app.js：双语内容、交互与动效
 - styles.css：基础布局
 - dark.css：深色设计
+- studio.css：Impeccable 视觉升级、设备材质与响应式样式
 - qianyan-brand.png：品牌素材
 
 ## 内容说明
