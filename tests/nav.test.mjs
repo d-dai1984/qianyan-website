@@ -13,14 +13,13 @@ test('nav is dark over the hero', async () => {
   await page.scrollTo(0);
   const s = await state();
   assert.equal(s.light, false);
-  assert.ok((s.bg.r + s.bg.g + s.bg.b) / 3 < 30, JSON.stringify(s.bg));
+  assert.ok(s.fg > .5, `link luminance ${s.fg}`);
 });
 
-test('nav turns light over a paper floor, with dark links', async () => {
+test('nav switches to dark links over a paper floor', async () => {
   await scrollUnderNav('#solutions');
   const s = await state();
   assert.equal(s.light, true);
-  assert.deepEqual([s.bg.r, s.bg.g, s.bg.b], [238, 241, 248]);
   assert.ok(s.fg < .5, `link luminance ${s.fg}`);
 });
 

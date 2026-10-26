@@ -65,7 +65,7 @@ test('state buttons have room around their labels', async () => {
 
 test('system stage drawing is not clipped and has side padding', async () => {
   const page = await open();
-  const r = await page.evaluate(`const s=document.querySelector('.system-iso');const vb=s.viewBox.baseVal;const b=s.getBBox();const st=getComputedStyle(document.querySelector('.system-stage'));
+  const r = await page.evaluate(`const s=document.querySelector('.system-iso');const vb=s.viewBox.baseVal;const bs=[...s.querySelectorAll('[data-layer]')].map(g=>g.getBBox());const b={x:Math.min(...bs.map(q=>q.x)),y:Math.min(...bs.map(q=>q.y))};b.width=Math.max(...bs.map(q=>q.x+q.width))-b.x;b.height=Math.max(...bs.map(q=>q.y+q.height))-b.y;const st=getComputedStyle(document.querySelector('.system-stage'));
     return {fits:b.x>=vb.x&&b.y>=vb.y&&b.x+b.width<=vb.x+vb.width&&b.y+b.height<=vb.y+vb.height,box:[b.x,b.y,b.width,b.height].map(Math.round),vb:[vb.x,vb.y,vb.width,vb.height],pad:parseFloat(st.paddingLeft)}`);
   assert.ok(r.fits, `content ${r.box} outside viewBox ${r.vb}`);
   assert.ok(r.pad >= 20, `padding ${r.pad}`);

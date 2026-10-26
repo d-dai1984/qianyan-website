@@ -9,7 +9,7 @@ after(() => page?.close());
 test('each platform layer is an isometric drawing with its spec line', async () => {
   const r = await page.evaluate(`return [...document.querySelectorAll('.arch-item')].map(a=>({iso:!!a.querySelector('svg.iso'),old:!!a.querySelector('svg[viewBox="0 0 64 64"]'),spec:a.querySelector('.iso-spec')?.textContent.trim(),w:a.querySelector('svg.iso')?.getBoundingClientRect().width,text:a.querySelectorAll('svg text').length}))`);
   assert.equal(r.length, 3);
-  assert.deepEqual(r.map(x => x.spec), ['E-INK · LED · NFC', 'SUB-1G · BLE · LOCAL CACHE', 'ON-PREM · API · MQTT']);
+  assert.deepEqual(r.map(x => x.spec), ['E-INK · LED · NFC', 'SUB-1G · BLE · LOCAL CACHE', 'ON-PREM · OPEN API']);
   for (const x of r) { assert.ok(x.iso); assert.ok(!x.old); assert.equal(x.text, 0, 'small drawings carry no leader text'); assert.ok(x.w >= 200 && x.w <= 360, `drawing is ${x.w}px wide`); }
 });
 

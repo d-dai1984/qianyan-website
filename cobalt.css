@@ -22,7 +22,6 @@
 .cobalt-edition .hero>.wrap{flex:1;display:flex;flex-direction:column}
 .cobalt-edition .hero-top{color:var(--fg-2);font-size:11px;letter-spacing:1.6px}
 .cobalt-edition .hero-grid{flex:1;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center;min-height:0;padding:24px 0 56px}
-.cobalt-edition .hero-copy{animation:none;translate:none}
 .cobalt-edition .hero h1{font-size:clamp(42px,4.4vw,64px);line-height:1.14;letter-spacing:-2.4px;font-weight:500;margin:0 0 24px;color:var(--fg)}
 .cobalt-edition .hero h1 .dim{color:var(--fg-dim)}
 .cobalt-edition .hero h1 em{font-style:normal;color:var(--accent)}
@@ -268,4 +267,33 @@
   .cobalt-edition .fog-band .hero-foot{grid-template-columns:1fr;border-top:0}
   .cobalt-edition .fog-band .hero-foot>span{padding:0 0 12px}
   .cobalt-edition .fog-band .hero-foot strong,.cobalt-edition .fog-band .hero-foot strong:nth-of-type(odd){border-left:0;border-top:1px solid rgb(242 244 251 / .24);padding:13px 0}
+}
+
+/* Motion pass: signals, pulses, tilt, NFC ripple. Older layers turn every animation off under reduced motion. */
+.iso .signal{fill:var(--accent);stroke:none}
+.iso .pulse{fill:none;stroke:var(--accent);stroke-width:1px}
+.hero-art{transition:transform .5s var(--ease);transform-origin:50% 55%}
+.hero-art [data-slab],.system-stage [data-layer]{will-change:transform}
+.cobalt-edition #app #state-device{position:relative}
+.nfc-ripple,.nfc-ripple::after{position:absolute;left:50%;top:46%;width:44px;height:44px;margin:-22px 0 0 -22px;border:1px solid var(--c-cobalt);border-radius:50%;pointer-events:none;animation:nfc-ripple 1.2s var(--ease) forwards}
+.nfc-ripple::after{content:'';left:0;top:0;margin:0;animation-delay:.18s}
+@keyframes nfc-ripple{from{transform:scale(1);opacity:.85}to{transform:scale(6.5);opacity:0}}
+
+/* Layered parallax: the hero copy enters on transform so its translate stays free for the parallax. */
+.cobalt-edition .hero-copy{animation:hero-in .9s var(--ease) both}
+@keyframes hero-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cobalt-edition #app [data-scroll-layer]{translate:0 var(--layer-y,0px);will-change:translate}
+.cobalt-edition #app .state-buttons{border-bottom:0;margin-bottom:24px}
+
+/* The hero's flex column must not shrink its wrap: one content edge from nav to footer. */
+.cobalt-edition .hero>.wrap{width:100%}
+/* The nav carries no fill; a light blur keeps links legible over whatever scrolls beneath. */
+.cobalt-edition #app .nav,.cobalt-edition #app .nav.is-light{background-color:transparent;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+/* The nav floats over the hero: it keeps its sticky slot but gives its height back, and the hero pads for it. */
+.cobalt-edition{--nav-h:82px}
+.cobalt-edition #app .nav{height:var(--nav-h);margin-bottom:calc(var(--nav-h) * -1)}
+.cobalt-edition .hero{min-height:100svh;padding-top:calc(var(--nav-h) + 34px)}
+@media(max-width:640px){
+  .cobalt-edition{--nav-h:72px}
+  .cobalt-edition .hero{min-height:0;padding-top:calc(var(--nav-h) + 24px)}
 }
