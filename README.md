@@ -1,6 +1,6 @@
 # 前琰科技 · QianYan Tech
 
-工业现场数字化解决方案品牌网站。深色版本，中英文切换，响应式布局与分层视差。
+工业现场数字化解决方案品牌网站。钴蓝版：深色首屏、蓝雾过渡、浅色楼层，中英文切换，响应式布局与分层视差。
 
 ## 本地运行
 
@@ -17,6 +17,8 @@ Settings → Pages → Deploy from a branch → main / (root)。每次更新 mai
 - styles.css：基础布局
 - dark.css：深色设计
 - studio.css：Impeccable 视觉升级、设备材质与响应式样式
+- cobalt.css：钴蓝版色彩 token、首屏等距插画、蓝雾过渡带与各楼层换色（最后加载）
+- tests/：浏览器检查（`node --test "tests/*.test.mjs"`，需本机 Chrome）
 - qianyan-brand.png：品牌素材
 
 ## 内容说明

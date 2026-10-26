@@ -1,0 +1,271 @@
+/* QianYan — cobalt edition. Every colour on the page comes from these tokens. */
+:root{
+  --c-ink-0:#04060c;--c-ink-1:#05081a;--c-cobalt:#2f55f4;--c-cobalt-hi:#5d86ff;--c-glow:#2a4dff;--c-glow-2:#1733d6;
+  --c-sky:#a9bdff;--c-line-dark:#bccbff;--c-text:#f2f4fb;--c-text-2:#9aa3bd;--c-text-dim:#8c95b0;--c-signal:#5fe8b4;
+  --c-paper:#eef1f8;--c-paper-ink:#0b1020;--c-paper-2:#566079;--c-paper-dim:#8a93ab;--c-line-light:#3a55d9;--c-signal-light:#12a876;
+  --c-eink:#e9ecf3;--c-eink-red:#c8453a;--c-eink-ink:#20263a;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+.tone-dark{
+  --bg:var(--c-ink-0);--fg:var(--c-text);--fg-2:var(--c-text-2);--fg-dim:var(--c-text-dim);--accent:var(--c-sky);
+  --hair:rgb(188 203 255 / .12);--hair-strong:rgb(188 203 255 / .3);--stroke:var(--c-line-dark);
+  --face-top:rgb(169 189 255 / .14);--face-left:rgb(47 85 244 / .5);--face-right:rgb(93 134 255 / .34);--node:var(--c-text);
+}
+.tone-light{
+  --bg:var(--c-paper);--fg:var(--c-paper-ink);--fg-2:var(--c-paper-2);--fg-dim:var(--c-paper-dim);--accent:var(--c-cobalt);
+  --hair:rgb(11 16 32 / .12);--hair-strong:rgb(11 16 32 / .24);--stroke:var(--c-line-light);
+  --face-top:rgb(47 85 244 / .05);--face-left:rgb(47 85 244 / .16);--face-right:rgb(47 85 244 / .09);--node:var(--c-cobalt);
+}
+
+/* Hero: one cobalt light source behind the isometric stack. */
+.cobalt-edition .hero{background:radial-gradient(46% 62% at 76% 52%,var(--c-glow) 0%,var(--c-glow-2) 24%,rgb(23 51 214 / .42) 46%,rgb(4 6 12 / 0) 74%),var(--c-ink-0);color:var(--fg);min-height:calc(100svh - 82px);padding:34px 0 0;display:flex;flex-direction:column;overflow:hidden;border:0}
+.cobalt-edition .hero>.wrap{flex:1;display:flex;flex-direction:column}
+.cobalt-edition .hero-top{color:var(--fg-2);font-size:11px;letter-spacing:1.6px}
+.cobalt-edition .hero-grid{flex:1;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center;min-height:0;padding:24px 0 56px}
+.cobalt-edition .hero-copy{animation:none;translate:none}
+.cobalt-edition .hero h1{font-size:clamp(42px,4.4vw,64px);line-height:1.14;letter-spacing:-2.4px;font-weight:500;margin:0 0 24px;color:var(--fg)}
+.cobalt-edition .hero h1 .dim{color:var(--fg-dim)}
+.cobalt-edition .hero h1 em{font-style:normal;color:var(--accent)}
+.cobalt-edition[lang=zh-CN] .hero h1 br:nth-of-type(2){display:none}
+.cobalt-edition .hero-copy>p{color:var(--fg-2);font-size:15px;line-height:1.85;max-width:460px;margin:0 0 34px}
+.cobalt-edition .hero-note{color:var(--fg-2);font-size:11px;letter-spacing:.6px}
+.cobalt-edition .hero-note span:before{content:'';display:inline-block;width:6px;height:6px;background:var(--c-signal);margin-right:8px;vertical-align:1px}
+.hero-figure{position:relative;margin:0;align-self:stretch;display:flex;align-items:center;justify-content:center}
+.hero-art{display:block;width:100%;max-width:640px;height:auto;overflow:visible}
+.iso *{vector-effect:non-scaling-stroke;stroke-width:1px}
+.iso .top{fill:var(--face-top);stroke:var(--stroke)}
+.iso .l{fill:var(--face-left);stroke:var(--stroke)}
+.iso .r{fill:var(--face-right);stroke:var(--stroke)}
+.iso .grid{fill:none;stroke:var(--stroke);opacity:.28}
+.iso .thin{fill:none;stroke:var(--stroke);opacity:.6}
+.iso .dash{fill:none;stroke:var(--stroke);stroke-dasharray:3 5;opacity:.7}
+.iso .scr{fill:var(--c-eink);stroke:var(--stroke)}
+.iso .ink{fill:none;stroke:var(--c-eink-ink);stroke-width:1.6px}
+.iso .node{fill:var(--node)}
+.iso .halo{fill:var(--node);opacity:.22}
+.iso .led{fill:var(--c-signal)}
+.iso text{fill:var(--accent);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.6px}
+.iso .iso-scale text{font-size:17.75px;letter-spacing:2.6px}
+.cobalt-edition .scene-caption{position:absolute;right:0;bottom:0;margin:0;font-size:11px;letter-spacing:1.2px;color:var(--fg-2)}
+
+/* Fog band: the hero's light dissolves into paper over ~400px, carrying the capability line. */
+.cobalt-edition .fog-band{height:420px;padding-top:44px;color:var(--c-text);background:radial-gradient(70% 220px at 50% 230px,rgb(93 134 255 / .4) 0%,rgb(93 134 255 / 0) 70%),linear-gradient(180deg,var(--c-ink-0) 0%,color-mix(in srgb,var(--c-ink-1) 62%,var(--c-cobalt)) 26%,color-mix(in srgb,var(--c-cobalt) 82%,var(--c-ink-1)) 48%,color-mix(in srgb,var(--c-cobalt) 45%,var(--c-paper)) 70%,color-mix(in srgb,var(--c-paper) 86%,var(--c-cobalt)) 88%,var(--c-paper) 100%)}
+.cobalt-edition .fog-band .hero-foot{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:0;border:0;border-top:1px solid rgb(242 244 251 / .24);padding:0;background:none;font-size:15px}
+.cobalt-edition .fog-band .hero-foot>span{padding:24px 24px 0 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.4px;color:rgb(242 244 251 / .8)}
+.cobalt-edition .fog-band .hero-foot strong{display:flex;align-items:center;gap:14px;padding:22px 24px 0;border-left:1px solid rgb(242 244 251 / .24);font-weight:500;color:var(--c-text)}
+.iso-glyph{width:32px;height:28px;flex:none;--stroke:var(--c-text);--face-top:rgb(242 244 251 / .1);--face-left:rgb(242 244 251 / .22);--face-right:rgb(242 244 251 / .14)}
+@media(max-width:640px){
+  .cobalt-edition .fog-band{height:280px;padding-top:28px}
+  .cobalt-edition .fog-band .hero-foot{grid-template-columns:1fr 1fr;font-size:14px}
+  .cobalt-edition .fog-band .hero-foot>span{padding:16px 12px 14px 0}
+  .cobalt-edition .fog-band .hero-foot strong{padding:16px 12px 14px;border-left:0;border-top:1px solid rgb(242 244 251 / .24)}
+  .cobalt-edition .fog-band .hero-foot strong:nth-of-type(odd){border-left:1px solid rgb(242 244 251 / .24)}
+}
+
+/* Reskin. The older layers (styles/dark/studio) keep layout; colour, surfaces and glows are reset here
+   and re-declared from tokens. The device mock-up keeps its own materials (see the device block). */
+.cobalt-edition body{background:var(--c-paper);color:var(--c-paper-ink)}
+.cobalt-edition ::selection{background:var(--c-cobalt);color:var(--c-text)}
+:where(.cobalt-edition #app) :where(*:not(svg,svg *,.device,.device *,.phone,.phone *)){color:inherit;border-color:var(--hair);background-color:transparent;box-shadow:none}
+:where(.cobalt-edition #app) :where(*:not(.device,.device *,.phone,.phone *))::before,:where(.cobalt-edition #app) :where(*:not(.device,.device *,.phone,.phone *))::after{border-color:var(--hair);box-shadow:none}
+.cobalt-edition #app :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.cobalt-edition #app .tone-dark,.cobalt-edition #app .tone-light{color:var(--fg)}
+.cobalt-edition #app .tone-light{background-color:var(--bg)}
+.cobalt-edition #app .skip{background-color:var(--c-cobalt);color:var(--c-text)}
+
+/* Nav (dark by default; Task 5 adds the light state). */
+.cobalt-edition #app .nav{background-color:rgb(4 6 12 / .88);border-bottom:1px solid var(--hair);backdrop-filter:blur(16px)}
+.cobalt-edition #app .nav::after{background:var(--accent);height:1px}
+.cobalt-edition #app .brand-mark{background-color:var(--c-ink-0)}
+.cobalt-edition #app .brand-sub{color:var(--fg-2);font-size:11px;letter-spacing:2.2px}
+.cobalt-edition #app .nav-links a{color:var(--fg-2)}
+.cobalt-edition #app .nav-links a:hover{color:var(--fg)}
+.cobalt-edition #app .nav-links a::after{background:var(--accent)}
+.cobalt-edition #app .lang{color:var(--fg)}
+.cobalt-edition #app .lang span{color:var(--fg-2)}
+
+/* Buttons: one cobalt primary, one hairline secondary. */
+.cobalt-edition #app .button{background:linear-gradient(180deg,var(--c-cobalt-hi),var(--c-cobalt));background-color:var(--c-cobalt);color:var(--c-text);border:1px solid var(--c-cobalt);border-radius:4px;font-weight:500}
+.cobalt-edition #app .button:hover{background:var(--c-cobalt-hi);background-color:var(--c-cobalt-hi);border-color:var(--c-cobalt-hi);transform:translateY(-1px)}
+.cobalt-edition #app .button.light,.cobalt-edition #app .button.small{background:none;background-color:transparent;color:var(--fg);border-color:var(--hair-strong)}
+.cobalt-edition #app .button.light:hover,.cobalt-edition #app .button.small:hover{border-color:var(--fg);background-color:transparent}
+
+/* Shared floor typography. */
+.cobalt-edition #app .eyebrow{color:var(--fg-2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.6px}
+.cobalt-edition #app .eyebrow::before{background:var(--accent);border-radius:0;width:6px;height:6px}
+.cobalt-edition #app .tone-light h2{color:var(--fg);font-weight:500;letter-spacing:-1.4px}
+.cobalt-edition #app h2 .dim{color:var(--fg-dim)}
+.cobalt-edition #app h2 em{font-style:normal;color:var(--accent)}
+.cobalt-edition #app .section-head>p,.cobalt-edition #app .tone-light p{color:var(--fg-2);font-size:15px}
+.cobalt-edition #app .tone-light .section-head{border-color:var(--hair)}
+.cobalt-edition #app .platform::before,.cobalt-edition #app .platform::after{display:none}
+.cobalt-edition #app .platform,.cobalt-edition #app .inspection{border:0}
+
+/* Solutions. */
+.cobalt-edition #app .feature-panel{background-color:var(--c-paper);background-image:none;border:1px solid var(--hair);border-radius:4px}
+.cobalt-edition #app .feature-top,.cobalt-edition #app .feature-bottom{color:var(--fg-2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.4px}
+.cobalt-edition #app .feature-visual::before{border-color:var(--hair)}
+.cobalt-edition #app .product-item{border-color:var(--hair)}
+.cobalt-edition #app .product-toggle{color:var(--fg)}
+.cobalt-edition #app .product-no{color:var(--fg-2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px}
+.cobalt-edition #app .product-toggle .plus{border:1px solid var(--hair-strong);color:var(--fg)}
+.cobalt-edition #app .product-toggle[aria-expanded=true] .plus{background-color:var(--c-cobalt);border-color:var(--c-cobalt);color:var(--c-text)}
+.cobalt-edition #app .product-details p{font-size:15px}
+.cobalt-edition #app .tags span{background-color:rgb(47 85 244 / .07);color:var(--c-line-light);border:0;font-size:12px}
+.cobalt-edition #app .text-link{color:var(--accent);font-size:14px}
+.cobalt-edition #app .alternative-concept{color:var(--accent)}
+.cobalt-edition #app .concept-index,.cobalt-edition #app .alternative-concept p{color:var(--fg-2);font-size:11px}
+.cobalt-edition #app .concept-name{color:var(--fg)}
+
+/* Platform. */
+.cobalt-edition #app .system-stage{background-color:var(--c-paper);border:1px solid var(--hair)}
+.cobalt-edition #app .system-node{background-color:var(--c-paper);border-color:var(--hair-strong);color:var(--fg)}
+.cobalt-edition #app .system-node.is-current{background-color:var(--c-cobalt);border-color:var(--c-cobalt);color:var(--c-text)}
+.cobalt-edition #app .system-lines path{stroke:var(--hair-strong)}
+.cobalt-edition #app .system-lines .signal{stroke:var(--accent)}
+.cobalt-edition #app .system-caption{color:var(--fg-2);font-size:12px}
+.cobalt-edition #app .arch-item{border-color:var(--hair)}
+.cobalt-edition #app .arch-item.is-current h3{color:var(--accent)}
+.cobalt-edition #app .arch-no,.cobalt-edition #app .trust-index{color:var(--fg-2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.4px}
+.cobalt-edition #app .arch-glyph{color:var(--accent);border-color:var(--hair)}
+
+.cobalt-edition #app .arch-arrow{color:var(--fg-dim)}
+.cobalt-edition #app .arch-arrow::after{background:var(--hair)}
+.cobalt-edition #app .platform-bottom{color:var(--fg-2);border-color:var(--hair);font-size:14px}
+.cobalt-edition #app .platform-bottom b{color:var(--fg)}
+
+/* Inspection. */
+.cobalt-edition #app .state-button{border:1px solid var(--hair-strong);color:var(--fg);border-radius:4px}
+.cobalt-edition #app .state-button.active{background-color:var(--c-cobalt);border-color:var(--c-cobalt);color:var(--c-text)}
+.cobalt-edition #app .state-explanation{color:var(--fg-2);border-color:var(--hair)}
+.cobalt-edition #app .inspection-demo{background-color:var(--c-paper);background-image:none;border:1px solid var(--hair);border-radius:4px}
+.cobalt-edition #app .demo-bar,.cobalt-edition #app .demo-bottom{color:var(--fg-2);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.2px}
+
+/* Approach. */
+.cobalt-edition #app .trust-grid,.cobalt-edition #app .trust-item{border-color:var(--hair)}
+.cobalt-edition #app .trust-item h3{color:var(--fg)}
+
+/* Contact: the dark cobalt bookend. */
+.cobalt-edition #app .contact{background:radial-gradient(60% 90% at 85% 100%,rgb(42 77 255 / .55) 0%,rgb(42 77 255 / 0) 70%),var(--c-ink-0);background-color:var(--c-ink-0);border:0}
+.cobalt-edition #app .contact h2{color:var(--fg)}
+.cobalt-edition #app .contact-copy>p,.cobalt-edition #app .contact-note{color:var(--fg-2)}
+.cobalt-edition #app .contact-note{border-color:var(--hair);font-size:13px}
+.cobalt-edition #app .field{color:var(--fg-2);font-size:13px}
+.cobalt-edition #app .field input,.cobalt-edition #app .field select,.cobalt-edition #app .field textarea{background-color:rgb(242 244 251 / .04);border:1px solid var(--hair-strong);color:var(--fg);border-radius:4px}
+.cobalt-edition #app .field select option{background-color:var(--c-ink-0);color:var(--c-text)}
+.cobalt-edition #app .form-status{color:var(--c-signal)}
+
+/* Footer. */
+.cobalt-edition #app footer{background-color:var(--c-ink-0);color:var(--fg);border-top:1px solid var(--hair)}
+.cobalt-edition #app .footer-right a{color:var(--fg-2)}
+.cobalt-edition #app .footer-bottom{color:var(--fg-2);border-color:var(--hair);font-size:12px}
+.cobalt-edition #app .hero-top{border-color:var(--hair)}
+.cobalt-edition #app .system-heading span,.cobalt-edition #app .system-node span{font-size:11px;letter-spacing:1.2px}
+.cobalt-edition #app .system-heading{color:var(--fg-2)}
+.cobalt-edition #app .nav{transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+.cobalt-edition #app .nav.is-light{background-color:rgb(238 241 248 / .86)}
+.cobalt-edition #app .nav.is-light .brand-mark{background-color:var(--c-ink-0)}
+
+/* Isometric drawings on paper floors. */
+.iso .wire{fill:none;stroke:var(--c-cobalt);stroke-width:1.6px}
+.cobalt-edition #app .arch-glyph{width:100%;height:auto;margin:0 0 4px;display:block;background:none;border:0}
+.iso-arch{display:block;width:100%;max-width:340px;height:auto}
+.cobalt-edition #app .iso-spec{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.4px;color:var(--accent);margin:0 0 14px}
+.cobalt-edition #app .system-stage{background:none;background-color:transparent}
+.cobalt-edition #app .system-map{height:auto;position:relative;margin:12px 0}
+.system-iso{display:block;width:100%;height:auto}
+.system-stage [data-layer]{transition:opacity .4s ease}
+.system-stage [data-layer]:not(.is-current){opacity:.35}
+.system-stage [data-layer].is-current :is(.top,.l,.r){stroke:var(--c-cobalt);stroke-width:1.5px}
+.cobalt-edition #app .system-legend{display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:1.2px;color:var(--fg-2);padding-bottom:6px}
+.cobalt-edition #app .system-legend .is-current{color:var(--accent)}
+
+/* Feature panel: product 1 shows the device, products 2–4 an isometric concept. */
+.cobalt-edition #app .feature-panel{position:relative}
+.alternative-concept{display:none}
+.cobalt-edition #app .feature-panel:not([data-concept="0"]) .feature-visual{visibility:hidden}
+.cobalt-edition #app .feature-panel:not([data-concept="0"]) .alternative-concept{display:flex;position:absolute;inset:64px 24px 56px;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.iso-concept{width:100%;max-height:250px}
+.cobalt-edition #app .concept-index{align-self:flex-start}
+.cobalt-edition #app .arch-glyph svg.iso-arch{width:100%;height:auto;max-width:340px}
+.iso circle{stroke:none}
+
+/* Line icons. */
+.ui-icon{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.4px;stroke-linecap:square;vertical-align:-3px}
+.cobalt-edition #app .arrow{display:inline-flex;font-size:0}
+.cobalt-edition #app .product-toggle .plus{display:grid;place-items:center;font-size:0}
+.cobalt-edition #app .product-toggle .plus .ui-icon{transition:transform .25s var(--ease)}
+.cobalt-edition #app .product-toggle[aria-expanded=true] .plus .ui-icon{transform:rotate(45deg)}
+.cobalt-edition #app .menu-toggle{font-size:0;line-height:0;color:var(--fg)}
+.cobalt-edition #app .arch-arrow{font-size:0;color:var(--fg-dim)}
+.cobalt-edition #app .platform-bottom span{display:inline-flex;align-items:center;gap:8px}
+.cobalt-edition #app .platform-bottom .ui-icon{color:var(--accent)}
+
+/* Device mock-ups: a line-drawn shell with pale faces; the e-paper keeps paper, ink and red. */
+.cobalt-edition #app .device,.cobalt-edition #app .phone{background:none;background-color:rgb(47 85 244 / .05);border:1px solid var(--c-line-light);box-shadow:none;color:var(--c-paper-2)}
+.cobalt-edition #app .device::before,.cobalt-edition #app .device::after{background:none;border-color:var(--c-line-light)}
+.cobalt-edition #app .device-top,.cobalt-edition #app .device-bottom{color:var(--c-paper-2);font-size:11px}
+.cobalt-edition #app .led{background-color:var(--status-color,var(--c-eink-red));box-shadow:none}
+.cobalt-edition #app .device-button{background-color:transparent;border:1px solid var(--c-line-light);box-shadow:none}
+.cobalt-edition #app .eink{background-color:var(--c-eink);border:1px solid var(--c-line-light);box-shadow:none;color:var(--c-eink-ink)}
+.cobalt-edition #app .eink *{color:var(--c-eink-ink);border-color:var(--c-eink-ink)}
+.cobalt-edition #app .eink-caption{opacity:.72}
+.cobalt-edition #app .eink-status,.cobalt-edition #app .eink-status *{background-color:var(--status-color,var(--c-eink-red));color:var(--c-eink)}
+.cobalt-edition #app .eink-status span{background-color:transparent}
+.cobalt-edition #app .eink-date{font-size:11px}
+.cobalt-edition #app .qr{background:repeating-conic-gradient(var(--c-eink-ink) 0 25%,var(--c-eink) 0 50%) 0/7px 7px;border-color:var(--c-eink)}
+.cobalt-edition #app .qr::after{background:var(--c-eink);border-color:var(--c-eink-ink)}
+.cobalt-edition #app .phone::before{background:var(--c-line-light)}
+.cobalt-edition #app .phone-content{background-color:var(--c-text);border:1px solid var(--c-line-light);color:var(--c-paper-ink)}
+.cobalt-edition #app .phone-sub{color:var(--c-paper-2)}
+.cobalt-edition #app .phone-check{border-color:rgb(11 16 32 / .12);font-size:11px}
+.cobalt-edition #app .phone-check b{color:var(--c-cobalt)}
+.cobalt-edition #app .phone-submit{background-color:var(--c-cobalt);color:var(--c-text)}
+
+/* Tablet and phone. */
+@media(max-width:900px){
+  .cobalt-edition .hero-grid{grid-template-columns:1fr;gap:12px;padding-bottom:40px}
+  .cobalt-edition .hero-figure{padding-bottom:28px}
+  .cobalt-edition .hero-art{max-width:560px;margin:0 auto}
+}
+@media(max-width:640px){
+  .cobalt-edition .hero{min-height:0;padding-top:24px;background:radial-gradient(90% 38% at 50% 74%,var(--c-glow) 0%,var(--c-glow-2) 26%,rgb(23 51 214 / .4) 50%,rgb(4 6 12 / 0) 78%),var(--c-ink-0)}
+  .cobalt-edition .hero h1{font-size:clamp(32px,9vw,42px);letter-spacing:-1.4px}
+  .cobalt-edition .hero-copy>p{font-size:14px}
+  .hero-art .iso-callout{display:none}
+  .cobalt-edition .hero-art{max-width:none;width:calc(100% + 24px);margin-inline:-12px}
+  .cobalt-edition .scene-caption{position:static;margin-top:4px;text-align:right}
+  .cobalt-edition .hero-figure{flex-direction:column}
+}
+.cobalt-edition #app .hero{background-color:var(--c-ink-0)}
+
+/* Old-layer colours exposed once the reset lost its specificity. */
+.cobalt-edition #app :is(.feature-top,.feature-bottom,.product-list,.state-buttons,.demo-bar,.demo-bottom,.text-link){border-color:var(--hair)}
+.cobalt-edition #app .product-details,.cobalt-edition #app .tags{color:var(--fg-2)}
+.cobalt-edition #app .text-link{border-bottom-color:var(--hair-strong)}
+.cobalt-edition #app :is(h1,h2,h3,h4){color:var(--fg)}
+.cobalt-edition #app .footer-right{color:var(--fg-2)}
+.cobalt-edition #app .nav-links.open{background-color:var(--bg);border-bottom:1px solid var(--hair);backdrop-filter:blur(16px)}
+.cobalt-edition #app .state-button{padding-inline:16px}
+.cobalt-edition #app :is(.system-heading,.system-caption) span{color:var(--fg-2)}
+
+/* Review fixes: the strip sits in cobalt, never on the lighter mist; the hero's bottom already leans blue. */
+.cobalt-edition #app .hero{background-image:linear-gradient(180deg,rgb(4 6 12 / 0) 70%,color-mix(in srgb,var(--c-ink-0) 72%,var(--c-cobalt)) 100%),radial-gradient(46% 62% at 76% 52%,var(--c-glow) 0%,var(--c-glow-2) 24%,rgb(23 51 214 / .42) 46%,rgb(4 6 12 / 0) 74%)}
+.cobalt-edition .fog-band{background:linear-gradient(180deg,color-mix(in srgb,var(--c-ink-0) 72%,var(--c-cobalt)) 0%,color-mix(in srgb,var(--c-cobalt) 70%,var(--c-ink-0)) 14%,color-mix(in srgb,var(--c-cobalt) 88%,var(--c-ink-0)) 34%,var(--c-cobalt) 50%,color-mix(in srgb,var(--c-cobalt) 50%,var(--c-paper)) 70%,color-mix(in srgb,var(--c-paper) 86%,var(--c-cobalt)) 88%,var(--c-paper) 100%)}
+.cobalt-edition .fog-band .hero-foot>span{color:var(--c-text)}
+@media(max-width:640px){
+  .cobalt-edition .fog-band{background:linear-gradient(180deg,color-mix(in srgb,var(--c-ink-0) 72%,var(--c-cobalt)) 0%,color-mix(in srgb,var(--c-cobalt) 75%,var(--c-ink-0)) 20%,color-mix(in srgb,var(--c-cobalt) 92%,var(--c-ink-0)) 60%,var(--c-cobalt) 68%,color-mix(in srgb,var(--c-cobalt) 45%,var(--c-paper)) 84%,var(--c-paper) 100%)}
+}
+/* Hero labels hold 11px on screen whatever the drawing's scale (--u is set from the rendered width). */
+.hero-art text{font-size:calc(11px * var(--u,1));letter-spacing:calc(1.6px * var(--u,1))}
+.hero-art .iso-scale text{font-size:calc(11px * var(--u,1) / .62);letter-spacing:calc(1.6px * var(--u,1) / .62)}
+.cobalt-edition #app .system-stage{padding-inline:24px}
+.system-iso{max-width:520px;margin:0 auto}
+
+/* Phone fog band: the intro line heads the strip; the three capabilities stack under it. */
+@media(max-width:640px){
+  .cobalt-edition .fog-band{height:320px;background:linear-gradient(180deg,color-mix(in srgb,var(--c-ink-0) 72%,var(--c-cobalt)) 0%,color-mix(in srgb,var(--c-cobalt) 75%,var(--c-ink-0)) 20%,color-mix(in srgb,var(--c-cobalt) 92%,var(--c-ink-0)) 66%,var(--c-cobalt) 74%,color-mix(in srgb,var(--c-cobalt) 45%,var(--c-paper)) 88%,var(--c-paper) 100%)}
+  .cobalt-edition .fog-band .hero-foot{grid-template-columns:1fr;border-top:0}
+  .cobalt-edition .fog-band .hero-foot>span{padding:0 0 12px}
+  .cobalt-edition .fog-band .hero-foot strong,.cobalt-edition .fog-band .hero-foot strong:nth-of-type(odd){border-left:0;border-top:1px solid rgb(242 244 251 / .24);padding:13px 0}
+}
